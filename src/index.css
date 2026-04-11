@@ -1,1 +1,60 @@
-@import 'tailwindcss'
+@import 'tailwindcss';
+
+:root {
+  --page: hsl(0, 0%, 0%);
+  --main: hsl(0, 0%, 50%);
+  --heading: hsl(0, 0%, 95%);
+  --card: hsla(0, 0%, 100%, 0.1);
+  --card-secondary: hsl(0, 0%, 10%);
+  --card-border: hsla(0, 0%, 100%, 0.5);
+  --card-border-size: 1.5px;
+  --button: hsl(0, 100%, 61%);
+}
+
+:root.light {
+  --page: hsl(0, 0%, 90%);
+  --main: hsl(0, 0%, 0%);
+  --card: hsl(0, 0%, 95%);
+  --card-secondary: hsl(0, 0%, 85%);
+  --card-border: hsla(0, 0%, 100%, 0);
+  --button: hsla(0, 100%, 61%, 0.5);
+}
+
+@theme {
+  --color-dark-section: hsla(0, 0%, 100%, 0.1);
+  --color-card-secondary: var(--card-secondary);
+}
+
+@utility text-content {
+    @apply text-(--main) text-2xl; 
+}
+
+@utility card-primary {
+    @apply border-(--card-border) border-(length:--card-border-size)
+           bg-(--card) text-content;
+}
+@utility card-secondary {
+    @apply backdrop-blur-lg bg-card-secondary text-content;
+}
+
+@utility btn-primary {
+    @apply relative bg-(--button) text-2xl text-(--heading) font-semibold;
+
+    &::before {
+      @apply absolute content-[''] bg-white inset-0 -z-2 rounded-[10px];
+    }
+}
+
+
+@layer base {
+    body {
+        @apply bg-(--page);
+    }
+
+}
+
+@layer components {
+  .heading {
+    @apply text-content;
+  }
+}
